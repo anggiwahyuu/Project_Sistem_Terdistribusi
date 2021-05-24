@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style_inGame.css" type="text/css">
+    <link rel="stylesheet" href="./style_menu.css" type="text/css">
+    <link rel="stylesheet" href="./style_loading-screen.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <title>Catur Jawa</title>
+</head>
+<body>
+    <div class="login">
+        <div class="container">
+            <div class="background-logo"><img class="logo" src="./logo_login.png"></div>
+            <div class="form">
+                <input type="text" name="nickname" id="nickname" placeholder="Nickname..." required>
+                <button id="button">PLAY</button>
+            </div>
+        </div>
+    </div>
+    <div class="loading">
+        <div class="container">
+            <div class="text">
+                <div>Hello, Nickname</div>
+                <div>Please wait</div>
+                <div>finding for opponent...</div>
+            </div>
+            <a href="./index.html"><button id="button">CANCEL</button></a>
+        </div>
+    </div>
+    <div class="game">
+        <div class="container">
+            <div class="left-col">
+                <div class="player2">
+                    <img class="profil" src="./profile_icon.png">
+                    <div class="name" id="player2"></div>
+                    <div class="bubble" id="chat2"></div>
+                </div>
+                <div class="player1">
+                    <img class="profil" src="./profile_icon.png">
+                    <div class="name" id="player1"></div>
+                    <div class="bubble" id="chat1"></div>
+                </div>
+                <div class="timeboard2">
+                    <button class="color1"></button>
+                    <div class="time" id="time_2"></div>
+                </div>
+                <div class="timeboard1">
+                    <button class="color2"></button>
+                    <div class="time" id="time_1"></div>
+                </div>
+                <button class="home">
+                    <img class="icon-home" src="./home_icon.png">
+                </button>
+            </div>
+            <div class="right-col">
+                <img class="icon-game" src="./logo_ingame.png">
+                <div class="live-chat" id="live-chat"></div>
+                <div class="form">
+                    <input type="text" name="text" id="text" placeholder="type here....." required>
+                    <button class="send" id="send">SEND</button>
+                </div>
+            </div>
+            <div class="board">
+                <button class="a1" id="a1"></button>
+                <button class="b1" id="b1"></button>
+                <button class="c1" id="c1"></button>
+                <button class="a2" id="a2"></button>
+                <button class="b2" id="b2"></button>
+                <button class="c2" id="c2"></button>
+                <button class="a3" id="a3"></button>
+                <button class="b3" id="b3"></button>
+                <button class="c3" id="c3"></button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./script_caturJawa.js"></script>
+
+</body>
+</html>
