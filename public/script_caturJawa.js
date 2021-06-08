@@ -5,36 +5,57 @@ $(".game").hide();
 $(".loading").hide();
 
 $(document).ready(function(){
+    
+
     $("#send").click(function(){
         datachat.nama = $("#nickname").val();
         datachat.chat = $("#text").val();
-
         socket.emit("chat", datachat);
         $("#text").val('');
     });
 
     $(".home").click(function(){
+        socket.on("userOnline", function(){
+            userOnline--;
+            console.log("User Out");
+        });
         $(".game").hide(1000);
         $(".login").show(1000);
-        $("#nickname").val('');
-
-        $("#live-chat").html($(''))
-
-        socket.emit("disconnect");
+        $("#nickname").val();
+        $("#live-chat").html($(''));
     });
 
-    $("#button").click(function(){
+    $(".login .form #button").click(function(){
+        socket.emit("join");
         datachat.nickname = $("#nickname").val();
         socket.emit("nickname", datachat);
-        socket.emit("join");
-
-        $(".login").hide(1000);
-        $(".game").show(1000);
+        socket.on("userOnline", function(userOnline){
+            console.log("User Join = " + userOnline);
+            if (userOnline <= 1){
+                $(".login").hide(1000);
+                $(".loading").show(1000);
+            } else{
+                $(".login").hide(1000);
+                $(".loading").hide(1000);
+                $(".game").show(1000);
+            }
+        });
     });
-});
 
-socket.on("userOnline", function(userOnline){
-    console.log("User Join = " + userOnline);
+    $(".loading #button").click(function(){
+        socket.on("userOnline", function(){
+            userOnline--;
+            console.log("User Out");
+        });
+        $(".loading").hide(1000);
+        $(".login").show(1000);
+    });
+
+    const menuToggle = document.querySelector('.menu-toggle input');
+    const nav = document.querySelector('.left-col');
+    menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('slide');
+    });
 });
 
 socket.on("nickname", function(data){
@@ -60,5 +81,5 @@ socket.on("nickname", function(data){
 });
 
 socket.on("chat", function(data){
-    $("#live-chat").append($("<div id='message'>" + data.nama + ": " + data.chat + "</div>"));
+    $(".live-chat").append($("<div id='message'>" + data.nama + ": " + data.chat + "</div>"));
 });

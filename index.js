@@ -11,9 +11,9 @@ const io = socket(server);
 app.use(express.static('public'));
 
 let userOnline = 0;
-
+/*
 var player = {},
-    unmatched;
+    unmatched;*/
 
 io.on('connection', function(socket) {
     console.log("Making connection", socket.id);
@@ -23,7 +23,7 @@ io.on('connection', function(socket) {
         console.log("User Join = " + userOnline);
         io.sockets.emit("userOnline", userOnline);
     });
-
+/*
     joinGame(socket);
     if (getOpponent(socket)) {
         io.sockets.emit("begin", {
@@ -32,7 +32,7 @@ io.on('connection', function(socket) {
         getOpponent(socket).emit("begin", {
             chara: player[getOpponent(socket).id].chara,
         });
-    }
+    }*/
 
     socket.on("nickname", function(data){
         io.sockets.emit("nickname", data);
@@ -48,7 +48,7 @@ io.on('connection', function(socket) {
         io.sockets.emit("userOnline", userOnline);
     });
 });
-
+/*
 function joinGame(socket) {
     player[socket.id] = {
         opponent: unmatched,
@@ -69,4 +69,4 @@ function getOpponent(socket) {
         return;
     }
     return player[player[socket.id].opponent].socket;
-}
+}*/
